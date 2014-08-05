@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="css/fullscreen-img.css">
 		<link rel="stylesheet" href="css/old-risk-css.css">
+		<link rel="stylesheet" href="css/animate.css">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
@@ -45,10 +46,19 @@
 			.reveal div{
 				margin: none;
 			}
-			#dashboard2{
+			#dash-view-port{
+				overflow:hidden;
+				background: transparent;
+				height: 279px;
+				width: 1900px;
 				position: absolute;
 				top:866px;
 				left:390px;
+			}
+			#dashboard2{
+				position: absolute;
+				/*top:866px;*/
+				left:0px;
 			}
 			#tooltip1{
 				position: absolute;
@@ -115,7 +125,9 @@
 	      	</section>
 	        <section data-transition="none" data-transition-speed="slow">
 	        	<img width="1920" height="1200" src="slides/3.png" />
-	        	<img id="dashboard2" class="fragment linear" src="slides/assets/threat_trends.png"/>
+	        	<div id='dash-view-port'>
+	        		<img id="dashboard2" class="fragment" src="slides/assets/threat_trends.png"/>
+	        	</div>
 	        	<img id="tooltip1" class="fragment" src="slides/assets/tooltip1.png" />
 	        	<img id="tooltip2" class="fragment" src="slides/assets/tooltip2.png" />
 	      	</section>
@@ -467,8 +479,8 @@
 	      	</section>
 	        <section data-transition="none">
 	        	<img width="1920" height="1200" src="slides/assets/threat_trends_nobubbles.png" />
-	        	<img id="yellowbubs" class="fragment fade" src="slides/assets/yellow_bubbles.png" />
-	        	<img id="redbubs" class="fragment fade" src="slides/assets/red_bubbles.png" />
+	        	<img id="yellowbubs" class="fragment" src="slides/assets/yellow_bubbles.png" />
+	        	<img id="redbubs" class="fragment" src="slides/assets/red_bubbles.png" />
 	      	</section>
 	        <section data-transition="none" data-transition-speed="slow">
 	        	<img width="1920" height="1200" src="slides/9.png" />
@@ -519,14 +531,72 @@
 				]
 			});
 			Reveal.addEventListener( 'slidechanged', function(event) {
-				setTimeout(function(){
-					Reveal.nextFragment();
-				},1500)
+				if(event.indexv == 1){
+					setTimeout(function(){
+						Reveal.nextFragment();
+						if(event.indexv == 1){
+							$('#slide2').addClass('animated pulse');
+							setTimeout(function(){
+								$('#slide2').removeClass('animated pulse');
+							},6000)
+						}
+					},750)
+				}
+				else if(event.indexv == 6){
+					setTimeout(function(){
+						Reveal.nextFragment();
+						if(event.indexv == 6){
+							$('#yellowbubs').addClass('animated bounceIn');
+							setTimeout(function(){
+								Reveal.nextFragment();
+								$('#redbubs').addClass('animated bounceIn');
+							},400)
+							setTimeout(function(){
+								$('#yellowbubs').removeClass('animated bounceIn');
+								$('#redbubs').removeClass('animated bounceIn');
+							},6000)
+						}
+					},1000)
+				}
+				else if (event.indexv == 4) {
+					setTimeout(function() {
+						Reveal.nextFragment();
+					}, 500);
+				}
+				else{
+					setTimeout(function(){
+						Reveal.nextFragment();
+						if(event.indexv == 1){
+							$('#slide2').addClass('animated pulse');
+							setTimeout(function(){
+								$('#slide2').removeClass('animated pulse');
+							},6000)
+						}
+						if(event.indexv == 2){
+							$('#dashboard2').addClass('animated bounceInUp');
+							setTimeout(function(){
+								$('#dashboard2').removeClass('animated bounceInUp');
+							},6000)
+						}
+					},1500)
+				}
 			});
 			Reveal.addEventListener( 'fragmentshown', function(event){
+				if($(event.fragment).attr('id') == 'tooltip1'){
+					$('#tooltip1').addClass('animated fadeInRight');
+					setTimeout(function(){
+						$('#tooltip1').removeClass('animated fadeInRight');
+					},6000)
+				}
+				else if($(event.fragment).attr('id') == 'tooltip2'){
+					$('#tooltip2').addClass('animated fadeInLeft');
+					setTimeout(function(){
+						$('#tooltip2').removeClass('animated fadeInLeft');
+					},6000)
+				}
 				setTimeout(function(){
 					Reveal.nextFragment();
-				},1500)
+				},1200)
 			});
 		</script>
 		<script src="js/jquery.js"></script>
