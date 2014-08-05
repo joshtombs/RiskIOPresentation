@@ -34,10 +34,27 @@
 			.reveal section img{
 				margin:0 0 0 0;
 				border: 0px;
+				background: none;
+				box-shadow: none;
 			}
 			.reveal img{
 				max-width: 100%;
 				max-height:100%;
+			}
+			#dashboard2{
+				position: absolute;
+				top:866px;
+				left:390px;
+			}
+			#tooltip1{
+				position: absolute;
+				top:271px;
+				right:38px;
+			}
+			#tooltip2{
+				position: absolute;
+				top:858px;
+				left:56px;
 			}
 		</style>
 		<!--[if lt IE 9]>
@@ -57,7 +74,10 @@
 	        	<img width="1920" height="1200" src="slides/2.png" />
 	      	</section>
 	        <section data-transition="none" data-transition-speed="slow">
-	        	<img width="1920" height="1200" src="slides/4.png" />
+	        	<img width="1920" height="1200" src="slides/3.png" />
+	        	<img id="dashboard2" class="fragment roll-in" src="slides/assets/threat_trends.png"/>
+	        	<img id="tooltip1" class="fragment" src="slides/assets/tooltip1.png" />
+	        	<img id="tooltip2" class="fragment" src="slides/assets/tooltip2.png" />
 	      	</section>
 	        <section data-transition="none" data-transition-speed="slow">
 	        	<img width="1920" height="1200" src="slides/5.png" />
@@ -98,6 +118,7 @@
 				maxScale: 1.0,
 				margin: 0,
 				backgroundTransition: 'none',
+				fragments: true,
 
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
@@ -118,7 +139,16 @@
 					{ src: 'js/fullscreen-img.js'}
 				]
 			});
-
+			Reveal.addEventListener( 'slidechanged', function(event) {
+				setTimeout(function(){
+					Reveal.nextFragment();
+				},1500)
+			});
+			Reveal.addEventListener( 'fragmentshown', function(event){
+				setTimeout(function(){
+					Reveal.nextFragment();
+				},1500)
+			});
 		</script>
 
 	</body>
