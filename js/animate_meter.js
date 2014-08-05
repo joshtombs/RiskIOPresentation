@@ -78,7 +78,7 @@ $(function() {
     var randNum;
     $('.step1').removeClass('active');
     $('.wrapper1').removeClass('low med high');
-    randNum = ~~(Math.floor(Math.random()*(33+1)));
+    randNum = ~~(Math.floor(Math.random()*(32+1)));
     $(".text1").text(randNum * 10);
     setActive(randNum);
     return $(".wrapper1").addClass(getClass(randNum));
@@ -92,7 +92,7 @@ $(function() {
     var randNum;
     $('.step2').removeClass('active');
     $('.wrapper2').removeClass('low med high');
-    randNum = ~~(Math.floor(Math.random()*(66-33+1)+33));
+    randNum = ~~(Math.floor(Math.random()*(65-34+1)+34));
     $(".text2").text(randNum * 10);
     setActive2(randNum);
     return $(".wrapper2").addClass(getClass(randNum));
@@ -106,7 +106,7 @@ $(function() {
     var randNum;
     $('.step3').removeClass('active');
     $('.wrapper3').removeClass('low med high');
-    randNum = ~~(Math.floor(Math.random()*(100-66+1)+66));
+    randNum = ~~(Math.floor(Math.random()*(99-67+1)+67));
     $(".text3").text(randNum * 10);
     setActive3(randNum);
     return $(".wrapper3").addClass(getClass(randNum));
